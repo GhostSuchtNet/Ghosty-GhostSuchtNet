@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta name="description" content="Ghost AI – KI-Chat von GhostSucht.Net" data-i18n-attr="content:ghosty.description">
   <title data-i18n="ghosty.title">Ghost AI – GhostSucht.Net</title>
   <link rel="stylesheet" href="/projects/style.css">
@@ -249,6 +252,7 @@
 <script id="ghosty-auth-script">
 (() => {
   const nativeFetch = window.fetch.bind(window);
+  const AUTH_FRONTEND_VERSION = '2026-09-02-status-first-v3';
 
   const byId = id => document.getElementById(id);
 
@@ -371,36 +375,96 @@
     location.reload();
   }
 
+  async function readJsonResponse(response) {
+    try {
+      return await response.json();
+    } catch {
+      return null;
+    }
+  }
+
+  async function requestAuthJson(path) {
+    const separator = path.includes('?') ? '&' : '?';
+    const url = `${path}${separator}v=${encodeURIComponent(AUTH_FRONTEND_VERSION)}&t=${Date.now()}`;
+    const response = await nativeFetch(url, {
+      method: 'GET',
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache' }
+    });
+    return { response, data: await readJsonResponse(response) };
+  }
+
   async function bootAuth() {
     hideApp();
 
     try {
-      const response = await nativeFetch('/api/auth/me', {
-        method: 'GET',
-        cache: 'no-store'
-      });
+      // 1) IMMER zuerst den öffentlichen, serverseitigen IP-Sperrstatus prüfen.
+      // Dadurch wird eine aktive MariaDB-Sperre bereits beim Reload angezeigt,
+      // bevor irgendeine Session-/Loginlogik ausgeführt wird.
+      const statusResult = await requestAuthJson('/api/auth/status');
 
-      if (!response.ok) {
-        showLogin('Der Zugangsdienst ist derzeit nicht erreichbar.');
-        return;
+      if (statusResult.response.ok && typeof statusResult.data?.blocked === 'boolean') {
+        if (statusResult.data.blocked) {
+          showBlocked(statusResult.data.blockedForSeconds || 10800);
+          return;
+        }
+      } else {
+        // Kompatibilitäts-Fallback für Backends, bei denen /api/auth/me bereits
+        // den kombinierten Session- und Sperrstatus liefert.
+        const stateResult = await requestAuthJson('/api/auth/me');
+
+        if (stateResult.response.ok && typeof stateResult.data?.blocked === 'boolean') {
+          if (stateResult.data.blocked) {
+            showBlocked(stateResult.data.blockedForSeconds || 10800);
+            return;
+          }
+
+          if (stateResult.data.loggedIn) {
+            showApp();
+            return;
+          }
+
+          showLogin();
+          return;
+        }
+
+        throw new Error('Der Zugangsdienst ist derzeit nicht erreichbar.');
       }
 
-      const data = await response.json();
+      // 2) Nicht gesperrt: erst jetzt Session prüfen.
+      const meResult = await requestAuthJson('/api/auth/me');
 
-      // MariaDB/Server ist die einzige Quelle für die IP-Sperre.
-      if (data.blocked) {
-        showBlocked(data.blockedForSeconds || 10800);
-        return;
-      }
+      if (meResult.response.ok) {
+        // Aktuelles Backend: /me liefert loggedIn/blocked.
+        if (typeof meResult.data?.blocked === 'boolean') {
+          if (meResult.data.blocked) {
+            showBlocked(meResult.data.blockedForSeconds || 10800);
+            return;
+          }
 
-      if (data.loggedIn) {
+          if (meResult.data.loggedIn) {
+            showApp();
+            return;
+          }
+
+          showLogin();
+          return;
+        }
+
+        // Legacy-Backend: ein erfolgreiches /me bedeutete eine gültige Session.
         showApp();
         return;
       }
 
-      showLogin();
-    } catch {
-      showLogin('Der Zugangsdienst ist derzeit nicht erreichbar.');
+      // Legacy-Backend: /me war geschützt und antwortete ohne Session mit 401.
+      if (meResult.response.status === 401) {
+        showLogin();
+        return;
+      }
+
+      throw new Error('Der Zugangsdienst ist derzeit nicht erreichbar.');
+    } catch (error) {
+      showLogin(error?.message || 'Der Zugangsdienst ist derzeit nicht erreichbar.');
     }
   }
 
