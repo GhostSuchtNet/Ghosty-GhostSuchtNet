@@ -27,7 +27,7 @@ const PEPPER = process.env.ACCESS_CODE_PEPPER;
 const PERMISSIONS = [
     ["feature.chat", "Chat verwenden"],
     ["model.ghosty-lite", "Ghosty Lite (Qwen 3.5 4B)"],
-    ["model.ghosty-medium", "Ghosty Medium (Qwen 3.5 9B)"],
+    ["model.ghosty-medium", "Ghosty Medium (Qwen 3.6 35B-A3B)"],
     ["model.ghosty-high", "Ghosty High (späteres großes Lokalmodell)"],
     ["model.qwen-cloud", "Qwen 3.8 27B Cloud"],
     ["model.gpt-oss", "GPT-OSS 120B"],
