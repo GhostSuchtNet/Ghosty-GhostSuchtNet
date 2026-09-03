@@ -9,6 +9,7 @@ const http = require("http");
 const path = require("path");
 const { spawn } = require("child_process");
 const { createAuth } = require("./auth");
+const localModels = require("./local-models");
 
 const app = express();
 const auth = createAuth();
@@ -24,8 +25,24 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
     .map(value => value.trim())
     .filter(Boolean);
 
-const MODEL_ORDER_TEXT = ["gemini", "qwen-cloud", "gpt-oss", "local-qwen"];
-const MODEL_ORDER_VISION = ["gemini", "qwen-cloud", "local-qwen"];
+const CLOUD_MODEL_IDS = new Set(["gemini", "qwen-cloud", "gpt-oss"]);
+const LOCAL_MODEL_IDS = new Set(["ghosty-lite", "ghosty-medium", "ghosty-high"]);
+
+const MODEL_ORDER_TEXT = [
+    "gemini",
+    "qwen-cloud",
+    "gpt-oss",
+    "ghosty-medium",
+    "ghosty-lite",
+    "ghosty-high"
+];
+
+const MODEL_ORDER_VISION = [
+    "gemini",
+    "qwen-cloud",
+    "ghosty-medium",
+    "ghosty-high"
+];
 
 app.set("trust proxy", 1);
 app.use(helmet({ contentSecurityPolicy: false }));
@@ -51,9 +68,16 @@ const visionUpload = multer({
 
 function allowedModelIdsFromAuth(req) {
     const ids = new Set();
+    const permissions = req.auth?.permissions || new Set();
+
     for (const id of MODEL_ORDER_TEXT) {
-        if (req.auth?.permissions?.has(`model.${id}`)) ids.add(id);
+        if (permissions.has(`model.${id}`)) ids.add(id);
     }
+
+    if (permissions.has("model.local-qwen")) {
+        ids.add("ghosty-medium");
+    }
+
     return ids;
 }
 
@@ -123,13 +147,6 @@ async function legacyJson(pathname, body, signal) {
     return { response, data };
 }
 
-function chooseAllowedAvailableModels(req, models, visionOnly = false) {
-    const allowed = allowedModelIdsFromAuth(req);
-    const byId = new Map((models || []).map(model => [model.id, model]));
-    const order = visionOnly ? MODEL_ORDER_VISION : MODEL_ORDER_TEXT;
-    return order.filter(id => allowed.has(id) && byId.get(id)?.available && (!visionOnly || byId.get(id)?.vision));
-}
-
 async function getLegacyModels(signal) {
     const response = await fetch(`${LEGACY_BASE}/api/ai/models`, { signal });
     const data = await response.json().catch(() => ({}));
@@ -139,6 +156,36 @@ async function getLegacyModels(signal) {
         throw error;
     }
     return data.models || [];
+}
+
+async function getAllModels(signal) {
+    const [legacyModels, local] = await Promise.all([
+        getLegacyModels(signal),
+        localModels.listModels(signal)
+    ]);
+
+    const cloud = legacyModels.filter(model =>
+        model.id !== "auto" &&
+        model.id !== "local-qwen" &&
+        CLOUD_MODEL_IDS.has(model.id)
+    );
+
+    const byId = new Map([...cloud, ...local].map(model => [model.id, model]));
+    return MODEL_ORDER_TEXT
+        .map(id => byId.get(id))
+        .filter(Boolean);
+}
+
+function chooseAllowedAvailableModels(req, models, visionOnly = false) {
+    const allowed = allowedModelIdsFromAuth(req);
+    const byId = new Map((models || []).map(model => [model.id, model]));
+    const order = visionOnly ? MODEL_ORDER_VISION : MODEL_ORDER_TEXT;
+
+    return order.filter(id =>
+        allowed.has(id) &&
+        byId.get(id)?.available &&
+        (!visionOnly || byId.get(id)?.vision)
+    );
 }
 
 function createRequestSignal(req, res) {
@@ -153,7 +200,98 @@ function createRequestSignal(req, res) {
     return controller.signal;
 }
 
-/* ========================= AUTH ========================= */
+function errorResponse(error) {
+    return {
+        response: {
+            ok: false,
+            status: Number(error?.status || 502)
+        },
+        data: {
+            error: error?.message || "Lokales Modell nicht erreichbar."
+        }
+    };
+}
+
+async function runChatModel(model, body, signal) {
+    if (LOCAL_MODEL_IDS.has(model)) {
+        try {
+            const data = await localModels.chat(model, { ...body, model }, signal);
+            return { response: { ok: true, status: 200 }, data };
+        } catch (error) {
+            if (error?.name === "AbortError") throw error;
+            console.error(`[Local ${model}]`, error.message);
+            return errorResponse(error);
+        }
+    }
+
+    return legacyJson("/api/ai/chat", { ...body, model }, signal);
+}
+
+function parseVisionHistory(value) {
+    if (!value) return [];
+    try {
+        const parsed = JSON.parse(value);
+        if (!Array.isArray(parsed)) return [];
+        return parsed
+            .filter(message => message && ["user", "assistant"].includes(message.role))
+            .map(message => ({
+                role: message.role,
+                content: String(message.content || "")
+            }))
+            .filter(message => message.content.trim());
+    } catch {
+        return [];
+    }
+}
+
+function visionBody(req) {
+    const history = parseVisionHistory(req.body?.history);
+    const prompt = String(req.body?.prompt || "").trim() || "Beschreibe und analysiere dieses Bild.";
+    return {
+        ...req.body,
+        messages: [...history, { role: "user", content: prompt }]
+    };
+}
+
+async function runVisionModel(model, req, signal) {
+    if (LOCAL_MODEL_IDS.has(model)) {
+        try {
+            const data = await localModels.vision(
+                model,
+                { ...visionBody(req), model },
+                {
+                    buffer: req.file.buffer,
+                    mimeType: req.file.mimetype
+                },
+                signal
+            );
+            return { response: { ok: true, status: 200 }, data };
+        } catch (error) {
+            if (error?.name === "AbortError") throw error;
+            console.error(`[Local vision ${model}]`, error.message);
+            return errorResponse(error);
+        }
+    }
+
+    const form = new FormData();
+    for (const [key, value] of Object.entries(req.body || {})) {
+        if (key !== "model" && value != null) form.append(key, String(value));
+    }
+    form.append("model", model);
+    form.append(
+        "image",
+        new Blob([req.file.buffer], { type: req.file.mimetype }),
+        req.file.originalname || "image"
+    );
+
+    const response = await fetch(`${LEGACY_BASE}/api/ai/vision`, {
+        method: "POST",
+        body: form,
+        signal
+    });
+    const data = await response.json().catch(() => ({}));
+    return { response, data };
+}
 
 app.get("/api/auth/status", async (req, res, next) => {
     try { return await auth.status(req, res); }
@@ -175,11 +313,25 @@ app.get("/api/auth/me", async (req, res, next) => {
     catch (error) { next(error); }
 });
 
-/* ========================= PUBLIC HEALTH ========================= */
+app.get("/api/ai/health", async (req, res) => {
+    let legacyOk = false;
+    try {
+        const response = await fetch(`${LEGACY_BASE}/api/ai/health`);
+        legacyOk = response.ok;
+    } catch {}
 
-app.get("/api/ai/health", rawLegacyProxy);
+    let locals = [];
+    try {
+        locals = await localModels.listModels();
+    } catch {}
 
-/* ========================= MODELS ========================= */
+    return res.json({
+        ok: legacyOk || locals.some(model => model.available),
+        legacy: legacyOk,
+        localModels: locals,
+        localQueues: localModels.queueState()
+    });
+});
 
 app.get(
     "/api/ai/models",
@@ -187,10 +339,11 @@ app.get(
     auth.requirePermission("feature.chat"),
     async (req, res) => {
         try {
-            const models = await getLegacyModels();
+            const models = await getAllModels();
             const allowed = allowedModelIdsFromAuth(req);
-            const filtered = models.filter(model => model.id !== "auto" && allowed.has(model.id));
+            const filtered = models.filter(model => allowed.has(model.id));
             const availableAllowed = filtered.filter(model => model.available);
+
             const auto = {
                 id: "auto",
                 label: "Automatisch",
@@ -199,18 +352,19 @@ app.get(
                 thinkingModes: ["instant", "low", "medium", "high"],
                 note: `Auto verwendet nur erlaubte Modelle: ${availableAllowed.map(model => model.label).join(" → ") || "keins verfügbar"}`
             };
+
             return res.json({
                 models: [auto, ...filtered],
                 permissions: [...req.auth.permissions]
             });
         } catch (error) {
             console.error("[Models Proxy]", error.message);
-            return res.status(error.status || 502).json({ error: "Modellliste konnte nicht geladen werden." });
+            return res.status(error.status || 502).json({
+                error: "Modellliste konnte nicht geladen werden."
+            });
         }
     }
 );
-
-/* ========================= CHAT ========================= */
 
 app.post(
     "/api/ai/chat",
@@ -219,33 +373,44 @@ app.post(
     jsonBody,
     async (req, res) => {
         const signal = createRequestSignal(req, res);
+
         try {
             const requested = String(req.body?.model || "auto");
             const allowed = allowedModelIdsFromAuth(req);
 
             if (requested !== "auto" && !allowed.has(requested)) {
-                return res.status(403).json({ error: "Dein Zugangscode darf dieses Modell nicht verwenden." });
+                return res.status(403).json({
+                    error: "Dein Zugangscode darf dieses Modell nicht verwenden."
+                });
             }
 
             let candidates = [requested];
+
             if (requested === "auto") {
-                const models = await getLegacyModels(signal);
+                const models = await getAllModels(signal);
                 candidates = chooseAllowedAvailableModels(req, models, false);
+
                 if (!candidates.length) {
-                    return res.status(503).json({ error: "Für deinen Zugangscode ist aktuell kein KI-Modell verfügbar." });
+                    return res.status(503).json({
+                        error: "Für deinen Zugangscode ist aktuell kein KI-Modell verfügbar."
+                    });
                 }
             }
 
             const attempts = [];
+
             for (const model of candidates) {
-                const { response, data } = await legacyJson("/api/ai/chat", { ...req.body, model }, signal);
+                const { response, data } = await runChatModel(model, req.body, signal);
+
                 if (response.ok) {
                     return res.status(response.status).json({
                         ...data,
                         selectedModel: requested
                     });
                 }
+
                 attempts.push({ model, status: response.status });
+
                 if (requested !== "auto") {
                     return res.status(response.status).json(data);
                 }
@@ -258,12 +423,12 @@ app.post(
         } catch (error) {
             if (signal.aborted || res.writableEnded) return;
             console.error("[Chat Proxy]", error.message);
-            return res.status(502).json({ error: "Ghosty-Chat-Backend ist derzeit nicht erreichbar." });
+            return res.status(502).json({
+                error: "Ghosty-Chat-Backend ist derzeit nicht erreichbar."
+            });
         }
     }
 );
-
-/* ========================= VISION ========================= */
 
 app.post(
     "/api/ai/vision",
@@ -272,54 +437,57 @@ app.post(
     visionUpload.single("image"),
     async (req, res) => {
         const signal = createRequestSignal(req, res);
+
         try {
-            if (!req.file) return res.status(400).json({ error: "Kein Bild hochgeladen." });
+            if (!req.file) {
+                return res.status(400).json({ error: "Kein Bild hochgeladen." });
+            }
 
             const requested = String(req.body?.model || "auto");
             const allowed = allowedModelIdsFromAuth(req);
+
             if (requested !== "auto" && !allowed.has(requested)) {
-                return res.status(403).json({ error: "Dein Zugangscode darf dieses Modell nicht verwenden." });
+                return res.status(403).json({
+                    error: "Dein Zugangscode darf dieses Modell nicht verwenden."
+                });
             }
-            if (requested === "gpt-oss") {
-                return res.status(400).json({ error: "GPT-OSS 120B unterstützt keine Bilder." });
+
+            if (["gpt-oss", "ghosty-lite"].includes(requested)) {
+                return res.status(400).json({
+                    error: "Das gewählte Modell unterstützt aktuell keine Bilder."
+                });
             }
 
             let candidates = [requested];
+
             if (requested === "auto") {
-                const models = await getLegacyModels(signal);
+                const models = await getAllModels(signal);
                 candidates = chooseAllowedAvailableModels(req, models, true);
+
                 if (!candidates.length) {
-                    return res.status(503).json({ error: "Für deinen Zugangscode ist aktuell kein Bildmodell verfügbar." });
+                    return res.status(503).json({
+                        error: "Für deinen Zugangscode ist aktuell kein Bildmodell verfügbar."
+                    });
                 }
             }
 
             const attempts = [];
-            for (const model of candidates) {
-                const form = new FormData();
-                for (const [key, value] of Object.entries(req.body || {})) {
-                    if (key !== "model" && value != null) form.append(key, String(value));
-                }
-                form.append("model", model);
-                form.append(
-                    "image",
-                    new Blob([req.file.buffer], { type: req.file.mimetype }),
-                    req.file.originalname || "image"
-                );
 
-                const response = await fetch(`${LEGACY_BASE}/api/ai/vision`, {
-                    method: "POST",
-                    body: form,
-                    signal
-                });
-                const data = await response.json().catch(() => ({}));
+            for (const model of candidates) {
+                const { response, data } = await runVisionModel(model, req, signal);
+
                 if (response.ok) {
                     return res.status(response.status).json({
                         ...data,
                         selectedModel: requested
                     });
                 }
+
                 attempts.push({ model, status: response.status });
-                if (requested !== "auto") return res.status(response.status).json(data);
+
+                if (requested !== "auto") {
+                    return res.status(response.status).json(data);
+                }
             }
 
             return res.status(503).json({
@@ -329,16 +497,12 @@ app.post(
         } catch (error) {
             if (signal.aborted || res.writableEnded) return;
             console.error("[Vision Proxy]", error.message);
-            return res.status(502).json({ error: "Ghosty-Bild-Backend ist derzeit nicht erreichbar." });
+            return res.status(502).json({
+                error: "Ghosty-Bild-Backend ist derzeit nicht erreichbar."
+            });
         }
     }
 );
-
-/* ========================= LEGACY TOOLS =========================
-   Alle alten Tool-Endpunkte bleiben exakt in server-before-auth.js.
-   Sie sind nur lokal auf 127.0.0.1:3010 erreichbar. Öffentlich läuft
-   jede Anfrage zuerst durch dieses Auth-Gateway.
-   ================================================================= */
 
 app.use(
     "/api/ai",
@@ -347,23 +511,26 @@ app.use(
     rawLegacyProxy
 );
 
-/* ========================= ERROR HANDLER ========================= */
-
 app.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {
         if (err.code === "LIMIT_FILE_SIZE") {
-            return res.status(413).json({ error: "Die Datei überschreitet das erlaubte Größenlimit." });
+            return res.status(413).json({
+                error: "Die Datei überschreitet das erlaubte Größenlimit."
+            });
         }
-        return res.status(400).json({ error: `Upload fehlgeschlagen: ${err.code}` });
+
+        return res.status(400).json({
+            error: `Upload fehlgeschlagen: ${err.code}`
+        });
     }
+
     if (err.message === "Origin nicht erlaubt") {
         return res.status(403).json({ error: "Origin nicht erlaubt." });
     }
+
     console.error(err);
     return res.status(500).json({ error: "Interner Serverfehler." });
 });
-
-/* ========================= PRIVATE LEGACY PROCESS ========================= */
 
 const legacy = spawn(process.execPath, [LEGACY_SERVER], {
     cwd: __dirname,
@@ -377,25 +544,34 @@ const legacy = spawn(process.execPath, [LEGACY_SERVER], {
 legacy.stdout.on("data", chunk => {
     process.stdout.write(`[legacy-tools] ${chunk}`);
 });
+
 legacy.stderr.on("data", chunk => {
     process.stderr.write(`[legacy-tools] ${chunk}`);
 });
+
 legacy.on("exit", (code, signal) => {
     if (code !== 0 && signal == null) {
         console.error(`[legacy-tools] Prozess beendet (Code ${code}).`);
     }
 });
+
 legacy.on("error", error => {
     console.error("[legacy-tools] Start fehlgeschlagen:", error.message);
 });
 
 let shuttingDown = false;
+
 function shutdown(signal) {
     if (shuttingDown) return;
     shuttingDown = true;
-    if (!legacy.killed) legacy.kill(signal === "SIGINT" ? "SIGINT" : "SIGTERM");
+
+    if (!legacy.killed) {
+        legacy.kill(signal === "SIGINT" ? "SIGINT" : "SIGTERM");
+    }
+
     setTimeout(() => process.exit(0), 250).unref();
 }
+
 process.once("SIGINT", () => shutdown("SIGINT"));
 process.once("SIGTERM", () => shutdown("SIGTERM"));
 process.once("exit", () => {
@@ -405,5 +581,6 @@ process.once("exit", () => {
 app.listen(PORT, "127.0.0.1", () => {
     console.log(`Ghosty Auth Gateway läuft auf http://127.0.0.1:${PORT}`);
     console.log(`Legacy Tool Backend: ${LEGACY_BASE}`);
+    console.log("Lokale Modelle: Ghosty Lite (8091), Ghosty Medium (8089), Ghosty High (optional)");
     console.log("Ghosty Zugangsschutz: aktiv");
 });
