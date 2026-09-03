@@ -16,7 +16,7 @@ const CONFIG = {
     },
     "ghosty-medium": {
         id: "ghosty-medium",
-        label: "Ghosty Medium · Qwen 3.5 9B",
+        label: "Ghosty Medium · Qwen 3.6 35B-A3B",
         url: process.env.GHOSTY_MEDIUM_URL || process.env.LOCAL_AI_URL || "http://127.0.0.1:8089",
         model: process.env.GHOSTY_MEDIUM_MODEL || "ghosty-medium",
         vision: true,
