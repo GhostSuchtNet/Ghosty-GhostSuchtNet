@@ -23,7 +23,7 @@ const CONFIG = {
         maxMessages: 24,
         maxChars: 50000,
         maxSystemChars: 30000,
-        maxOutputTokens: 1536,
+        maxOutputTokens: 768,
         thinking: { instant: 0, low: 64, medium: 128, high: 256 },
         concurrency: DEFAULT_CONCURRENCY
     },
@@ -195,7 +195,7 @@ function buildMessages(body, config, image = null) {
 }
 
 function thinkingBudget(config, thinking) {
-    return config.thinking[thinking] ?? config.thinking.medium;
+    return config.thinking[thinking] ?? config.thinking.instant;
 }
 
 async function fetchJson(url, options, timeoutMs = 600000) {
@@ -277,7 +277,7 @@ async function chat(id, body, signal, image = null) {
 
     const thinking = ["instant", "low", "medium", "high"].includes(body?.thinking)
         ? body.thinking
-        : "medium";
+        : "instant";
 
     const requestBody = {
         model: config.model,
