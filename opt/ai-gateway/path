@@ -1,0 +1,363 @@
+Script started on 2026-09-03 00:23:16+02:00 [TERM="xterm" TTY="/dev/pts/6" COLUMNS="237" LINES="62"]
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mdf -h[27mdf -h
+[?2004lFilesystem      Size  Used Avail Use% Mounted on
+/dev/loop76     196G  123G   63G  67% /
+none            492K  4.0K  488K   1% /dev
+tmpfs           378G     0  378G   0% /dev/shm
+tmpfs           152G  360K  152G   1% /run
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs            76G     0   76G   0% /run/user/1004
+tmpfs            76G     0   76G   0% /run/user/0
+overlay         196G  123G   63G  67% /var/lib/docker/rootfs/overlayfs/de177c9c058d8a420750fed621fcb91ab3b9d1f432d686e52b1a7a690a3b2df8
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcd /opt/ai-gateway[27mcd /opt/ai-gateway
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcp server.js server-backup-before-auth-status.js[27m
+[7mcp auth.js auth-backup-before-auth-status.js[27m[Apt/ai-gateway# cp server.js server-backup-before-auth-status.js
+cp auth.js auth-backup-before-auth-status.js
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K[7mcp server.js server-backup-before-auth-status.js[27m
+[7mcp auth.js auth-backup-before-auth-status.js[27m[Apt/ai-gateway# cp server.js server-backup-before-auth-status.js
+cp auth.js auth-backup-before-auth-status.js
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K[7mls -lh *backup-before-auth-status.js[27mls -lh *backup-before-auth-status.js
+[?2004l-rw-r--r-- 1 root root 13K Sep  3 00:29 auth-backup-before-auth-status.js
+-rw-r--r-- 1 root root 23K Sep  3 00:29 server-backup-before-auth-status.js
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcd /opt/ai-gateway[27mcd /opt/ai-gateway
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mgrep -n 'api/auth/status' server.js[27mgrep -n 'api/auth/status' server.js
+[?2004l[32m[K571[m[K[36m[K:[m[Kapp.get("/[01;31m[Kapi/auth/status[m[K", async (req, res, next) => {
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mgrep -n 'api/auth/status' server.js[27mgrep -n 'api/auth/status' server.js
+[?2004l[32m[K571[m[K[36m[K:[m[Kapp.get("/[01;31m[Kapi/auth/status[m[K", async (req, res, next) => {
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mgrep -n 'async function status' auth.js[27mgrep -n 'async function status' auth.js
+[?2004l[32m[K213[m[K[36m[K:[m[K    [01;31m[Kasync function status[m[K(req, res) {
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mgrep -n 'getBlockState' auth.js[27mgrep -n 'getBlockState' auth.js
+[?2004l[32m[K53[m[K[36m[K:[m[K    async function [01;31m[KgetBlockState[m[K(ip) {
+[32m[K215[m[K[36m[K:[m[K        const block = await [01;31m[KgetBlockState[m[K(ip);
+[32m[K225[m[K[36m[K:[m[K        const block = await [01;31m[KgetBlockState[m[K(ip);
+[32m[K308[m[K[36m[K:[m[K        const block = await [01;31m[KgetBlockState[m[K(ip);
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mnode --check server.js[27mnode --check server.js
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mnode --check auth.js[27mnode --check auth.js
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mpm2 restart ai-gateway --update-env[27mpm2 restart ai-gateway --update-env
+[?2004l[32m[PM2] [39mApplying action restartProcessId on app [ai-gateway](ids: [ 3 ])
+[32m[PM2] [39m[ai-gateway](3) ✓
+[90m┌────┬────────────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name                       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m3[39m[36m[22m[1m  [39m[22m[90m│[39m ai-gateway                 [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 984452   [90m│[39m 0s     [90m│[39m 2405 [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 21.3mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m2[39m[36m[22m[1m  [39m[22m[90m│[39m barrierai-basis-checker    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 790      [90m│[39m 23D    [90m│[39m 0    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 59.9mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m0[39m[36m[22m[1m  [39m[22m[90m│[39m battleship                 [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 778      [90m│[39m 23D    [90m│[39m 0    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 62.0mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m ghost-sync2                [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 784      [90m│[39m 23D    [90m│[39m 0    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 51.4mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mpm2 status[27mpm2 status
+[?2004l[90m┌────┬────────────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name                       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m3[39m[36m[22m[1m  [39m[22m[90m│[39m ai-gateway                 [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 984452   [90m│[39m 3s     [90m│[39m 2405 [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 76.6mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m2[39m[36m[22m[1m  [39m[22m[90m│[39m barrierai-basis-checker    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 790      [90m│[39m 23D    [90m│[39m 0    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 59.9mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m0[39m[36m[22m[1m  [39m[22m[90m│[39m battleship                 [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 778      [90m│[39m 23D    [90m│[39m 0    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 62.0mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m ghost-sync2                [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 784      [90m│[39m 23D    [90m│[39m 0    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 51.4mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcurl -i http://127.0.0.1:3009/api/auth/status[27mcurl -i http://127.0.0.1:3009/api/auth/status
+[?2004lHTTP/1.1 200 OK
+[1mCross-Origin-Opener-Policy[0m: same-origin
+[1mCross-Origin-Resource-Policy[0m: same-origin
+[1mOrigin-Agent-Cluster[0m: ?1
+[1mReferrer-Policy[0m: no-referrer
+[1mStrict-Transport-Security[0m: max-age=31536000; includeSubDomains
+[1mX-Content-Type-Options[0m: nosniff
+[1mX-DNS-Prefetch-Control[0m: off
+[1mX-Download-Options[0m: noopen
+[1mX-Frame-Options[0m: SAMEORIGIN
+[1mX-Permitted-Cross-Domain-Policies[0m: none
+[1mX-XSS-Protection[0m: 0
+[1mVary[0m: Origin
+[1mAccess-Control-Allow-Credentials[0m: true
+[1mContent-Type[0m: application/json; charset=utf-8
+[1mContent-Length[0m: 39
+[1mETag[0m: W/"27-n6+KtTJl58ViK8y7E8/dJGHts2E"
+[1mDate[0m: Wed, 02 Sep 2026 22:33:20 GMT
+[1mConnection[0m: keep-alive
+[1mKeep-Alive[0m: timeout=5
+
+{"blocked":false,"blockedForSeconds":0}[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mdu -xhd1 / 2>/dev/null | sort -h[27mdu -xhd1 / 2>/dev/null | sort -h
+[?2004l4.0K	/boot
+4.0K	/media
+4.0K	/mnt
+4.0K	/srv
+16K	/lost+found
+2.2M	/private
+8.3M	/etc
+23M	/tmp
+7.5G	/root
+7.6G	/opt
+8.1G	/var
+9.2G	/usr
+90G	/home
+123G	/
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mdu -xhd1 /opt 2>/dev/null | sort -h[27mdu -xhd1 /opt 2>/dev/null | sort -h
+[?2004l12K	/opt/containerd
+16K	/opt/searxng
+174M	/opt/ai-gateway
+530M	/opt/whisper.cpp
+708M	/opt/llama.cpp
+6.2G	/opt/ghost-ai-local
+7.6G	/opt
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mfind / -xdev -type f -size +1G -printf '%s %p\n' 2>/dev/null | sort -n | numfmt --field=1 --to=iec[27mfind / -xdev -type f -size +1G -printf '%s %p\n' 2>/dev/null | sort -n | numfmt --field=1 --to=iec
+[?2004l1.4G /var/lib/mysql/Economy/xconomyrecord.ibd
+5.3G /opt/ghost-ai-local/models/Qwen3.5-9B-Q4_K_M.gguf
+11G /home/Backup/backup-minecraft-7.tar
+11G /home/Backup/backup-minecraft-6.tar
+11G /home/Backup/backup-minecraft-5.tar
+11G /home/Backup/backup-minecraft-4.tar
+11G /home/Backup/backup-minecraft-3.tar
+11G /home/Backup/backup-minecraft-2.tar
+11G /home/Backup/backup-minecraft-1.tar
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K[7mfind / -type f -name "*.gguf" -printf '%s %p\n' 2>/dev/null | sort -n | numfmt --field=1 --to=iec[27mfind / -type f -name "*.gguf" -printf '%s %p\n' 2>/dev/null | sort -n | numfmt --field=1 --to=iec
+[?2004l613K /opt/llama.cpp/models/ggml-vocab-bert-bge.gguf
+707K /opt/llama.cpp/models/ggml-vocab-llama-spm.gguf
+710K /opt/llama.cpp/models/ggml-vocab-phi-3.gguf
+1.2M /opt/llama.cpp/models/ggml-vocab-deepseek-coder.gguf
+1.3M /opt/llama.cpp/models/ggml-vocab-baichuan.gguf
+1.7M /opt/llama.cpp/models/ggml-vocab-starcoder.gguf
+1.7M /opt/llama.cpp/models/ggml-vocab-refact.gguf
+1.7M /opt/llama.cpp/models/ggml-vocab-gpt-2.gguf
+1.7M /opt/llama.cpp/models/ggml-vocab-mpt.gguf
+1.7M /opt/llama.cpp/models/ggml-vocab-gpt-neox.gguf
+2.2M /opt/llama.cpp/models/ggml-vocab-falcon.gguf
+3.8M /opt/llama.cpp/models/ggml-vocab-deepseek-llm.gguf
+4.7M /opt/llama.cpp/models/ggml-vocab-aquila.gguf
+5.7M /opt/llama.cpp/models/ggml-vocab-qwen2.gguf
+5.7M /opt/llama.cpp/models/ggml-vocab-qwen35.gguf
+6.6M /opt/llama.cpp/models/ggml-vocab-nomic-bert-moe.gguf
+7.5M /opt/llama.cpp/models/ggml-vocab-llama-bpe.gguf
+11M /opt/llama.cpp/models/ggml-vocab-command-r.gguf
+16M /opt/llama.cpp/models/ggml-vocab-gemma-4.gguf
+880M /opt/ghost-ai-local/models/mmproj-BF16.gguf
+5.3G /opt/ghost-ai-local/models/Qwen3.5-9B-Q4_K_M.gguf
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K[7mdu -xhd1 /home 2>/dev/null | sort -h[27mdu -xhd1 /home 2>/dev/null | sort -h
+[?2004l693M	/home/deploy
+3.9G	/home/school
+14G	/home/minecraft
+71G	/home/Backup
+90G	/home
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mdu -xhd2 /home 2>/dev/null | sort -h | tail -40[27mdu -xhd2 /home 2>/dev/null | sort -h | tail -40
+[?2004l4.0K	/home/deploy/.cache
+4.0K	/home/school/.cache
+8.0K	/home/deploy/.local
+8.0K	/home/deploy/.ssh
+12K	/home/minecraft/.cache
+16K	/home/minecraft/.config
+16K	/home/minecraft/.local
+2.5M	/home/deploy/server-hardening
+18M	/home/school/.ghostnotes-backups
+142M	/home/minecraft/Proxy
+156M	/home/school/Anderes
+203M	/home/deploy/projects
+457M	/home/minecraft/Dungeon1
+488M	/home/deploy/.codex
+693M	/home/deploy
+804M	/home/minecraft/Lobby
+816M	/home/minecraft/Dungeon3
+817M	/home/minecraft/Dungeon2
+1.6G	/home/minecraft/Event
+2.1G	/home/minecraft/Test
+3.6G	/home/minecraft/Citybuild
+3.7G	/home/minecraft/Bauserver
+3.8G	/home/school/Schule
+3.9G	/home/school
+14G	/home/minecraft
+71G	/home/Backup
+90G	/home
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcrontab -l[27mcrontab -l
+[?2004l
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+@reboot ping 192.168.1.1
+0 1 * * * bash /home/Backup/backup.sh
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mgrep -RniE 'minecraft|/home/Backup|backup-minecraft' \[27m
+[7m/etc/crontab \[27m
+[7m/etc/cron.d \[27m
+[7m/var/spool/cron/crontabs \[27m
+[7m2>/dev/null[27m[A[A[A[A1b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# grep -RniE 'minecraft|/home/Backup|backup-minecraft' \
+/etc/crontab \
+/etc/cron.d \
+/var/spool/cron/crontabs \
+2>/dev/null
+[?2004l[35m[K/var/spool/cron/crontabs/root[m[K[36m[K:[m[K[32m[K29[m[K[36m[K:[m[K0 1 * * * bash [01;31m[K/home/Backup[m[K/backup.sh
+[35m[K/var/spool/cron/crontabs/minecraft[m[K[36m[K:[m[K[32m[K27[m[K[36m[K:[m[K@reboot bash /home/[01;31m[Kminecraft[m[K/Citybuild/cronstart.sh
+[35m[K/var/spool/cron/crontabs/minecraft[m[K[36m[K:[m[K[32m[K28[m[K[36m[K:[m[K@reboot bash /home/[01;31m[Kminecraft[m[K/Lobby/cronstart.sh
+[35m[K/var/spool/cron/crontabs/minecraft[m[K[36m[K:[m[K[32m[K29[m[K[36m[K:[m[K@reboot bash /home/[01;31m[Kminecraft[m[K/Proxy/cronstart.sh
+[35m[K/var/spool/cron/crontabs/minecraft[m[K[36m[K:[m[K[32m[K30[m[K[36m[K:[m[K@reboot bash /home/[01;31m[Kminecraft[m[K/Nether/cronstart.sh
+[35m[K/var/spool/cron/crontabs/minecraft[m[K[36m[K:[m[K[32m[K31[m[K[36m[K:[m[K@reboot bash /home/[01;31m[Kminecraft[m[K/Overworld/cronstart.sh
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K[7mgrep -RniE 'minecraft|/home/Backup|backup-minecraft' \[27m
+[7m/etc/systemd/system \[27m
+[7m2>/dev/null[27m[A[A1b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# grep -RniE 'minecraft|/home/Backup|backup-minecraft' \
+/etc/systemd/system \
+2>/dev/null
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K[7msystemctl list-timers --all[27msystemctl list-timers --all
+[?2004l[?1h=[0m[0;4mNEXT                        [0m[0m[0;4m LEFT         [0m[0m[0;4m LAST                        [0m[0m[0;4m PASSED      [0m[0m[0;4m UNIT                        [0m[0m[0;4m ACTIVATES                     [0m[m
+Thu 2026-09-03 01:09:00 CEST 27min left    Thu 2026-09-03 00:39:16 CEST 2min 19s ago phpsessionclean.timer        phpsessionclean.service[m
+Thu 2026-09-03 01:46:59 CEST 1h 5min left  Wed 2026-09-02 22:58:01 CEST 1h 43min ago motd-news.timer              motd-news.service[m
+Thu 2026-09-03 02:53:29 CEST 2h 11min left Wed 2026-09-02 19:05:29 CEST 5h 36min ago certbot.timer                certbot.service[m
+Thu 2026-09-03 04:41:36 CEST 4h 0min left  Wed 2026-09-02 17:16:10 CEST 7h ago       apt-daily.timer              apt-daily.service[m
+Thu 2026-09-03 06:15:43 CEST 5h 34min left Wed 2026-09-02 06:19:37 CEST 18h ago      apt-daily-upgrade.timer      apt-daily-upgrade.service[m
+Thu 2026-09-03 07:23:51 CEST 6h left       Wed 2026-09-02 06:25:08 CEST 18h ago      man-db.timer                 man-db.service[m
+Thu 2026-09-03 07:52:14 CEST 7h left       Wed 2026-09-02 02:27:27 CEST 22h ago      plocate-updatedb.timer       plocate-updatedb.service[m
+Fri 2026-09-04 00:00:00 CEST 23h left      Thu 2026-09-03 00:00:16 CEST 41min ago    dpkg-db-backup.timer         dpkg-db-backup.service[m
+Fri 2026-09-04 00:00:00 CEST 23h left      Thu 2026-09-03 00:00:16 CEST 41min ago    logrotate.timer              logrotate.service[m
+Fri 2026-09-04 00:04:12 CEST 23h left      Thu 2026-09-03 00:04:12 CEST 37min ago    systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service[m
+Sun 2026-09-06 03:10:03 CEST 3 days left   Sun 2026-08-30 03:10:19 CEST 3 days ago   e2scrub_all.timer            e2scrub_all.service[m
+n/a                          n/a           n/a                          n/a          fstrim.timer                 fstrim.service[m
+n/a                          n/a           n/a                          n/a          ua-timer.timer               [m
+[m
+[0;1;39m13 timers listed.[0m[m
+[K[?1l>[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcrontab -l > /root/crontab-root-before-minecraft-cleanup.txt[27mcrontab -l > /root/crontab-root-before-minecraft-cleanup.txt
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcrontab -u minecraft -l > /root/crontab-minecraft-before-cleanup.txt[27mcrontab -u minecraft -l > /root/crontab-minecraft-before-cleanup.txt
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [K[7mcrontab -e[27mcrontab -e
+[?2004l[?2004h[?1049h[22;0;0t[1;62r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[60;112H(B[0;7m[ Reading... ](B[m[60;111H(B[0;7m[ Read 26 lines ](B[m[H(B[0;7m  GNU nano 6.2 [92b/tmp/crontab.dfJH7h/crontab [101b [1;236H(B[m[61d(B[0;7m^G(B[m Help[61;19H(B[0;7m^O(B[m Write Out[37G(B[0;7m^W(B[m Where Is[55G(B[0;7m^K(B[m Cut[61;73H(B[0;7m^T(B[m Execute[61;91H(B[0;7m^C(B[m Location[109G(B[0;7mM-U(B[m Undo[61;127H(B[0;7mM-A(B[m Set Mark[145G(B[0;7mM-](B[m To Bracket    (B[0;7mM-Q(B[m Previous[181G(B[0;7m^B(B[m Back[61;199H(B[0;7m^Left(B[m Prev Word   (B[0;7m^A(B[m Home[62d(B[0;7m^X(B[m Exit[62;19H(B[0;7m^R(B[m Read File[37G(B[0;7m^\(B[m Replace[62;55H(B[0;7m^U(B[m Paste[62;73H(B[0;7m^J(B[m Justify[62;91H(B[0;7m^/(B[m Go To Line     (B[0;7mM-E(B[m Redo[62;127H(B[0;7mM-6(B[m Copy[62;145H(B[0;7m^Q(B[m Where Was[163G(B[0;7mM-W(B[m Next[62;181H(B[0;7m^F(B[m Forward[62;199H(B[0;7m^Right(B[m Next Word  (B[0;7m^E(B[m End[3d[36m# Edit this file to introduce tasks to be run by cron.[4d# [5d# Each task to run has to be defined through a single line[6d# indicating with different fields when the task will be run[7d# and what command to run for the task[8d# [9d# To define the time you can provide concrete values for[10d# minute (m), hour (h), day of month (dom), month (mon),[11d# and day of week (dow) or use '*' in these fields (for 'any').[12d# [13d# Notice that tasks will be started based on the cron's system[14d# daemon's notion of time and timezones.[15d# [16d# Output of the crontab jobs (including errors) is sent through[17d# email to the user the crontab file belongs to (unless redirected).[18d# [19d# For example, you can run a backup of all your user accounts[20d# at 5 a.m every week with:[21d# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/[22d# [23d# For more information see the manual pages of crontab(5) and cron(8)[24d# [25d# m h  dom mon dow   command[26d[39m(B[m@reboot ping 192.168.1.1[27d0 1 * * * bash /home/Backup/backup.sh[2d[?12l[?25h[?25l[?12l[?25h[3d[?25l[?12l[?25h[4d[?25l[?12l[?25h[5d[?25l[?12l[?25h[6d[?25l[?12l[?25h[8d[?25l[?12l[?25h[9d[?25l[?12l[?25h[10d[?25l[?12l[?25h[11d[?25l[?12l[?25h[12d[?25l[?12l[?25h[13d[?25l[?12l[?25h[14d[?25l[?12l[?25h[16d[?25l[?12l[?25h[17d[?25l[?12l[?25h[18d[?25l[?12l[?25h[19d[?25l[?12l[?25h[20d[?25l[?12l[?25h[21d[?25l[60d[K[?12l[?25h[22d[?25l[?12l[?25h[24d[?25l[?12l[?25h[25d[?25l[?12l[?25h[26d[?25l[?12l[?25h[27d[?25l[?12l[?25h0[?25l[?12l[?25h [?25l[?12l[?25h1[?25l[?12l[?25h [?25l[?12l[?25h*[?25l[?12l[?25h [?25l[?12l[?25h*[?25l[?12l[?25h [?25l[?12l[?25h*[?25l[?12l[?25h [?25l[?12l[?25hb[?25l[?12l[?25ha[?25l[?12l[?25hs[?25l[?12l[?25hh[?25l[?12l[?25h [?25l[?12l[?25h/[?25l[?12l[?25hh[?25l[?12l[?25ho[?25l[?12l[?25hm[?25l[?12l[?25he[?25l[?12l[?25h/[?25l[?12l[?25hB[?25l[?12l[?25ha[?25l[?12l[?25hc[?25l[?12l[?25hk[?25l[?12l[?25hu[?25l[?12l[?25hp[?25l[?12l[?25h/[?25l[?12l[?25hb[?25l[?12l[?25ha[?25l[?12l[?25hc[?25l[?12l[?25hk[?25l[?12l[?25hu[?25l[?12l[?25hp[?25l[?12l[?25h.[?25l[?12l[?25hs[?25l[?12l[?25hh[?25l[?12l[?25h[28d[?25l[?12l[?25h[?25l[?12l[?25h[27;38H[?25l[1;136H(B[0;7m*[236G(B[m[?12l[?25h[27;37H [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[K[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h[K[?25l[26;25H[?12l[?25h[?25l[61;19H [11b[37G [10b[55G     (B[0;7mM-D(B[m DOS Format [8b[61;91H [10b[109G [9b(B[0;7mM-A(B[m Append [9b[145G[33X[61;178H(B[0;7mM-B(B[m Backup File[K[62;2H(B[0;7mC(B[m Cancel[62;19H [11b[37G [9b[62;55H     (B[0;7mM-M(B[m Mac Format [8b[62;91H[28X[62;119H(B[0;7mM-P(B[m Prepend     [62;145H [11b[163G [7b[178G(B[0;7m^T(B[m Browse[K[60d(B[0;7mFile Name to Write: /tmp/crontab.dfJH7h/crontab [188b [60;48H(B[m[?12l[?25h[?25l[60;111H[1K (B[0;7m[ Writing... ](B[m[K[1;136H(B[0;7m [236G(B[m[60;110H(B[0;7m[ Wrote 25 lines ](B[m[61;19H(B[0;7m^O(B[m Write Out[37G(B[0;7m^W(B[m Where Is[55G(B[0;7m^K(B[m Cut [11b(B[0;7m^T(B[m Execute[61;91H(B[0;7m^C(B[m Location[109G(B[0;7mM-U(B[m Undo [9b(B[0;7mM-A(B[m Set Mark[145G(B[0;7mM-](B[m To Bracket    (B[0;7mM-Q(B[m Previous      (B[0;7m^B(B[m Back     [199G(B[0;7m^Left(B[m Prev Word   (B[0;7m^A(B[m Home[62;2H(B[0;7mX(B[m Exit  [62;19H(B[0;7m^R(B[m Read File[37G(B[0;7m^\(B[m Replace[62;55H(B[0;7m^U(B[m Paste [9b(B[0;7m^J(B[m Justify[62;91H(B[0;7m^/(B[m Go To Line     (B[0;7mM-E(B[m Redo [9b(B[0;7mM-6(B[m Copy[62;145H(B[0;7m^Q(B[m Where Was[163G(B[0;7mM-W(B[m Next[178G   (B[0;7m^F(B[m Forward[62;199H(B[0;7m^Right(B[m Next Word  (B[0;7m^E(B[m End[?12l[?25h[26;25H[?25l[60d[J[62d[?12l[?25h[62;1H[?1049l[23;0;0t[?1l>[?2004lcrontab: installing new crontab
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcrontab -l[27mcrontab -l
+[?2004l
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+@reboot ping 192.168.1.1
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# crontab -le
+[?2004l[?2004h[?1049h[22;0;0t[1;62r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[60;112H(B[0;7m[ Reading... ](B[m[60;111H(B[0;7m[ Read 25 lines ](B[m[H(B[0;7m  GNU nano 6.2 [92b/tmp/crontab.vdeS61/crontab [101b [1;236H(B[m[61d(B[0;7m^G(B[m Help[61;19H(B[0;7m^O(B[m Write Out[37G(B[0;7m^W(B[m Where Is[55G(B[0;7m^K(B[m Cut[61;73H(B[0;7m^T(B[m Execute[61;91H(B[0;7m^C(B[m Location[109G(B[0;7mM-U(B[m Undo[61;127H(B[0;7mM-A(B[m Set Mark[145G(B[0;7mM-](B[m To Bracket    (B[0;7mM-Q(B[m Previous[181G(B[0;7m^B(B[m Back[61;199H(B[0;7m^Left(B[m Prev Word   (B[0;7m^A(B[m Home[62d(B[0;7m^X(B[m Exit[62;19H(B[0;7m^R(B[m Read File[37G(B[0;7m^\(B[m Replace[62;55H(B[0;7m^U(B[m Paste[62;73H(B[0;7m^J(B[m Justify[62;91H(B[0;7m^/(B[m Go To Line     (B[0;7mM-E(B[m Redo[62;127H(B[0;7mM-6(B[m Copy[62;145H(B[0;7m^Q(B[m Where Was[163G(B[0;7mM-W(B[m Next[62;181H(B[0;7m^F(B[m Forward[62;199H(B[0;7m^Right(B[m Next Word  (B[0;7m^E(B[m End[3d[36m# Edit this file to introduce tasks to be run by cron.[4d# [5d# Each task to run has to be defined through a single line[6d# indicating with different fields when the task will be run[7d# and what command to run for the task[8d# [9d# To define the time you can provide concrete values for[10d# minute (m), hour (h), day of month (dom), month (mon),[11d# and day of week (dow) or use '*' in these fields (for 'any').[12d# [13d# Notice that tasks will be started based on the cron's system[14d# daemon's notion of time and timezones.[15d# [16d# Output of the crontab jobs (including errors) is sent through[17d# email to the user the crontab file belongs to (unless redirected).[18d# [19d# For example, you can run a backup of all your user accounts[20d# at 5 a.m every week with:[21d# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/[22d# [23d# For more information see the manual pages of crontab(5) and cron(8)[24d# [25d# m h  dom mon dow   command[26d[39m(B[m@reboot ping 192.168.1.1[2d[?12l[?25h[?25l[?12l[?25h[3d[?25l[?12l[?25h[4d[?25l[?12l[?25h[5d[?25l[?12l[?25h[6d[?25l[?12l[?25h[7d[?25l[?12l[?25h[8d[?25l[?12l[?25h[9d[?25l[?12l[?25h[10d[?25l[?12l[?25h[11d[?25l[?12l[?25h[12d[?25l[?12l[?25h[13d[?25l[?12l[?25h[14d[?25l[?12l[?25h[15d[?25l[?12l[?25h[16d[?25l[?12l[?25h[17d[?25l[?12l[?25h[18d[?25l[?12l[?25h[19d[?25l[?12l[?25h[20d[?25l[?12l[?25h[21d[?25l[60d[K[?12l[?25h[22d[?25l[?12l[?25h[23d[?25l[?12l[?25h[24d[?25l[?12l[?25h[25d[?25l[?12l[?25h[26d[?25l[?12l[?25h[27d[?25l[?12l[?25h[?25l[?12l[?25h[26;25H[?25l[1;136H(B[0;7m*[236G(B[m[?12l[?25h[26;24H [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[K[?25l[25;29H[?12l[?25h[?25l[61;19H [11b[37G [10b[55G     (B[0;7mM-D(B[m DOS Format [8b[61;91H [10b[109G [9b(B[0;7mM-A(B[m Append [9b[145G[33X[61;178H(B[0;7mM-B(B[m Backup File[K[62;2H(B[0;7mC(B[m Cancel[62;19H [11b[37G [9b[62;55H     (B[0;7mM-M(B[m Mac Format [8b[62;91H[28X[62;119H(B[0;7mM-P(B[m Prepend     [62;145H [11b[163G [7b[178G(B[0;7m^T(B[m Browse[K[60d(B[0;7mFile Name to Write: /tmp/crontab.vdeS61/crontab [188b [60;48H(B[m[?12l[?25h[?25l[60;111H[1K (B[0;7m[ Writing... ](B[m[K[1;136H(B[0;7m [236G(B[m[60;110H(B[0;7m[ Wrote 24 lines ](B[m[61;19H(B[0;7m^O(B[m Write Out[37G(B[0;7m^W(B[m Where Is[55G(B[0;7m^K(B[m Cut [11b(B[0;7m^T(B[m Execute[61;91H(B[0;7m^C(B[m Location[109G(B[0;7mM-U(B[m Undo [9b(B[0;7mM-A(B[m Set Mark[145G(B[0;7mM-](B[m To Bracket    (B[0;7mM-Q(B[m Previous      (B[0;7m^B(B[m Back     [199G(B[0;7m^Left(B[m Prev Word   (B[0;7m^A(B[m Home[62;2H(B[0;7mX(B[m Exit  [62;19H(B[0;7m^R(B[m Read File[37G(B[0;7m^\(B[m Replace[62;55H(B[0;7m^U(B[m Paste [9b(B[0;7m^J(B[m Justify[62;91H(B[0;7m^/(B[m Go To Line     (B[0;7mM-E(B[m Redo [9b(B[0;7mM-6(B[m Copy[62;145H(B[0;7m^Q(B[m Where Was[163G(B[0;7mM-W(B[m Next[178G   (B[0;7m^F(B[m Forward[62;199H(B[0;7m^Right(B[m Next Word  (B[0;7m^E(B[m End[?12l[?25h[25;29H[?25l[60d[J[62d[?12l[?25h[62;1H[?1049l[23;0;0t[?1l>[?2004lcrontab: installing new crontab
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mpgrep -a ping[27mpgrep -a ping
+[?2004l318 ping 192.168.1.1
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mpkill -f "ping 192.168.1.1"[27mpkill -f "ping 192.168.1.1"
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcrontab -l[27mcrontab -l
+[?2004l
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcrontab -u minecraft -e[27mcrontab -u minecraft -e
+[?2004l[?2004h[?1049h[22;0;0t[1;62r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[60;112H(B[0;7m[ Reading... ](B[m[60;111H(B[0;7m[ Read 28 lines ](B[m[H(B[0;7m  GNU nano 6.2 [92b/tmp/crontab.VT0k8x/crontab [101b [1;236H(B[m[61d(B[0;7m^G(B[m Help[61;19H(B[0;7m^O(B[m Write Out[37G(B[0;7m^W(B[m Where Is[55G(B[0;7m^K(B[m Cut[61;73H(B[0;7m^T(B[m Execute[61;91H(B[0;7m^C(B[m Location[109G(B[0;7mM-U(B[m Undo[61;127H(B[0;7mM-A(B[m Set Mark[145G(B[0;7mM-](B[m To Bracket    (B[0;7mM-Q(B[m Previous[181G(B[0;7m^B(B[m Back[61;199H(B[0;7m^Left(B[m Prev Word   (B[0;7m^A(B[m Home[62d(B[0;7m^X(B[m Exit[62;19H(B[0;7m^R(B[m Read File[37G(B[0;7m^\(B[m Replace[62;55H(B[0;7m^U(B[m Paste[62;73H(B[0;7m^J(B[m Justify[62;91H(B[0;7m^/(B[m Go To Line     (B[0;7mM-E(B[m Redo[62;127H(B[0;7mM-6(B[m Copy[62;145H(B[0;7m^Q(B[m Where Was[163G(B[0;7mM-W(B[m Next[62;181H(B[0;7m^F(B[m Forward[62;199H(B[0;7m^Right(B[m Next Word  (B[0;7m^E(B[m End[2d[36m# Edit this file to introduce tasks to be run by cron.[3d# [4d# Each task to run has to be defined through a single line[5d# indicating with different fields when the task will be run[6d# and what command to run for the task[7d# [8d# To define the time you can provide concrete values for[9d# minute (m), hour (h), day of month (dom), month (mon),[10d# and day of week (dow) or use '*' in these fields (for 'any').[11d# [12d# Notice that tasks will be started based on the cron's system[13d# daemon's notion of time and timezones.[14d# [15d# Output of the crontab jobs (including errors) is sent through[16d# email to the user the crontab file belongs to (unless redirected).[17d# [18d# For example, you can run a backup of all your user accounts[19d# at 5 a.m every week with:[20d# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/[21d# [22d# For more information see the manual pages of crontab(5) and cron(8)[23d# [24d# m h  dom mon dow   command[25d[39m(B[m@reboot bash /home/minecraft/Citybuild/cronstart.sh[26d@reboot bash /home/minecraft/Lobby/cronstart.sh[27d@reboot bash /home/minecraft/Proxy/cronstart.sh[28d@reboot bash /home/minecraft/Nether/cronstart.sh[29d@reboot bash /home/minecraft/Overworld/cronstart.sh[2d[?12l[?25h[?25l[?12l[?25h[3d[?25l[?12l[?25h[4d[?25l[?12l[?25h[5d[?25l[?12l[?25h[6d[?25l[?12l[?25h[7d[?25l[?12l[?25h[8d[?25l[?12l[?25h[9d[?25l[?12l[?25h[10d[?25l[?12l[?25h[11d[?25l[?12l[?25h[12d[?25l[?12l[?25h[13d[?25l[?12l[?25h[14d[?25l[?12l[?25h[15d[?25l[?12l[?25h[16d[?25l[?12l[?25h[17d[?25l[?12l[?25h[18d[?25l[?12l[?25h[19d[?25l[?12l[?25h[20d[?25l[?12l[?25h[21d[?25l[60d[K[?12l[?25h[22d[?25l[?12l[?25h[23d[?25l[?12l[?25h[24d[?25l[?12l[?25h[25d[?25l[?12l[?25h[26d[?25l[?12l[?25h[27d[?25l[?12l[?25h[28d[?25l[?12l[?25h[29d[?25l[?12l[?25h[30d[?25l[?12l[?25h[29;52H[?25l[1;136H(B[0;7m*[236G(B[m[?12l[?25h[29;51H [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[K[?25l[28;49H[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[K[?25l[27;48H[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[K[?25l[26;48H[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[K[?25l[25;52H[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[K[?25l[24;29H[?12l[?25h[?25l[61;19H [11b[37G [10b[55G     (B[0;7mM-D(B[m DOS Format [8b[61;91H [10b[109G [9b(B[0;7mM-A(B[m Append [9b[145G[33X[61;178H(B[0;7mM-B(B[m Backup File[K[62;2H(B[0;7mC(B[m Cancel[62;19H [11b[37G [9b[62;55H     (B[0;7mM-M(B[m Mac Format [8b[62;91H[28X[62;119H(B[0;7mM-P(B[m Prepend     [62;145H [11b[163G [7b[178G(B[0;7m^T(B[m Browse[K[60d(B[0;7mFile Name to Write: /tmp/crontab.VT0k8x/crontab [188b [60;48H(B[m[?12l[?25h[?25l[60;111H[1K (B[0;7m[ Writing... ](B[m[K[1;136H(B[0;7m [236G(B[m[60;110H(B[0;7m[ Wrote 23 lines ](B[m[61;19H(B[0;7m^O(B[m Write Out[37G(B[0;7m^W(B[m Where Is[55G(B[0;7m^K(B[m Cut [11b(B[0;7m^T(B[m Execute[61;91H(B[0;7m^C(B[m Location[109G(B[0;7mM-U(B[m Undo [9b(B[0;7mM-A(B[m Set Mark[145G(B[0;7mM-](B[m To Bracket    (B[0;7mM-Q(B[m Previous      (B[0;7m^B(B[m Back     [199G(B[0;7m^Left(B[m Prev Word   (B[0;7m^A(B[m Home[62;2H(B[0;7mX(B[m Exit  [62;19H(B[0;7m^R(B[m Read File[37G(B[0;7m^\(B[m Replace[62;55H(B[0;7m^U(B[m Paste [9b(B[0;7m^J(B[m Justify[62;91H(B[0;7m^/(B[m Go To Line     (B[0;7mM-E(B[m Redo [9b(B[0;7mM-6(B[m Copy[62;145H(B[0;7m^Q(B[m Where Was[163G(B[0;7mM-W(B[m Next[178G   (B[0;7m^F(B[m Forward[62;199H(B[0;7m^Right(B[m Next Word  (B[0;7m^E(B[m End[?12l[?25h[24;29H[?25l[60d[J[62d[?12l[?25h[62;1H[?1049l[23;0;0t[?1l>[?2004lcrontab: installing new crontab
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mcrontab -u minecraft -l[27mcrontab -u minecraft -l
+[?2004l# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mps -u minecraft -o pid,etime,cmd[27mps -u minecraft -o pid,etime,cmd
+[?2004l    PID     ELAPSED CMD
+    355 23-00:59:40 SCREEN -dmS Lobby bash start.sh inscreen
+    356 23-00:59:40 SCREEN -dmS Proxy bash start.sh inscreen
+    357 23-00:59:40 SCREEN -dmS Citybuild bash start.sh inscreen
+    361 23-00:59:40 bash start.sh inscreen
+    362 23-00:59:40 bash start.sh inscreen
+    363 23-00:59:40 bash start.sh inscreen
+    364 23-00:59:40 java -server -Xmx5G -Xms1G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=40 -XX:G1MaxNewSizePercent=
+    365 23-00:59:40 java -server -Xmx10G -Xms1G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=40 -XX:G1MaxNewSizePercent
+    366 23-00:59:40 java -server -Xmx8G -Xms1G -jar waterfall.jar
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mrm -rf /home/Backup[27mrm -rf /home/Backup
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mrm -rf /home/Backup[27mrm -rf /home/Backup
+[?2004l[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mdf -h /[27mdf -h /
+[?2004lFilesystem      Size  Used Avail Use% Mounted on
+/dev/loop76     196G   53G  134G  29% /
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mls -lah /home/minecraft[27mls -lah /home/minecraft
+[?2004ltotal 72K
+drwxr-xr-x 14 minecraft minecraft 4.0K Jun 26 00:43 [0m[01;34m.[0m
+drwxr-xr-x  5 root      root      4.0K Sep  3 00:46 [01;34m..[0m
+-rw-------  1 minecraft minecraft 8.4K Jun 26 00:43 .bash_history
+drwx------  3 minecraft minecraft 4.0K Jun 17  2023 [01;34m.cache[0m
+drwx------  4 minecraft minecraft 4.0K Jun 16  2023 [01;34m.config[0m
+drwxrwxr-x  3 minecraft minecraft 4.0K Jun 16  2023 [01;34m.local[0m
+-rw-rw-r--  1 minecraft minecraft   66 Jun 16  2023 .selected_editor
+drwxrwxr-x 28 minecraft minecraft 4.0K Sep 14  2025 [01;34mBauserver[0m
+drwxr-xr-x 21 minecraft minecraft 4.0K Aug 30  2025 [01;34mCitybuild[0m
+drwxrwxr-x 12 minecraft minecraft 4.0K Sep  6  2025 [01;34mDungeon1[0m
+drwxrwxr-x 11 minecraft minecraft 4.0K Mar 31  2025 [01;34mDungeon2[0m
+drwxrwxr-x 11 minecraft minecraft 4.0K Mar 31  2025 [01;34mDungeon3[0m
+drwxrwxr-x 14 minecraft minecraft 4.0K Dec  8  2024 [01;34mEvent[0m
+drwxrwxr-x 10 minecraft minecraft 4.0K Jun 24 21:24 [01;34mLobby[0m
+drwxrwxr-x  6 minecraft minecraft 4.0K Mar 20  2025 [01;34mProxy[0m
+drwxrwxr-x 19 minecraft minecraft 4.0K Mar 27  2025 [01;34mTest[0m
+[?2004h]0;root@dc67461b-92e7-4561-89ee-891aca9da004: /opt/ai-gatewayroot@dc67461b-92e7-4561-89ee-891aca9da004:/opt/ai-gateway# [7mdu -xhd1 /home/minecraft 2>/dev/null | sort -h[27mdu -xhd1 /home/minecraft 2>/dev/null | sort -h
+[?2004l12K	/home/minecraft/.cache
+16K	/home/minecraft/.config
+16K	/home/minecraft/.local
+142M	/home/minecraft/Proxy
+457M	/home/minecraft/Dungeon1
+804M	/home/minecraft/Lobby
+816M	/home/minecraft/Dungeon3
+817M	/home/minecraft/Dungeon2
+1.6G	/home/minecraft/Event
+2.1G	/home/minecraft/Test
+3.6G	/home/minecraft/Citybuild
+3.7G	/h

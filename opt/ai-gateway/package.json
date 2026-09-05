@@ -1,0 +1,40 @@
+{
+  "name": "ai-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@eslint/js": "10.0.1",
+    "@mozilla/readability": "^0.6.0",
+    "ajv": "8.20.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "eslint": "10.10.0",
+    "exceljs": "^4.4.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "ipaddr.js": "^2.5.0",
+    "jsdom": "^30.0.1",
+    "jszip": "^3.10.1",
+    "mammoth": "^1.12.2",
+    "multer": "^2.3.0",
+    "mysql2": "^3.24.3",
+    "pdfjs-dist": "^5.4.149",
+    "tree-sitter": "0.21.1",
+    "tree-sitter-java": "0.23.5",
+    "tree-sitter-javascript": "0.23.1",
+    "tree-sitter-python": "0.21.0",
+    "yaml": "2.9.0"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
+  }
+}
